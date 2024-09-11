@@ -111,7 +111,7 @@ export const products = {
   graphicsCards: [
     {
       id: "msi-rtx-3060",
-      name: "Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA ",
+      name: "Placa de Vídeo RTX 3060 Ventus 2X MSI NVIDIA",
       manufacturer: "Msi",
       stock: 15,
       description: "Placa de vídeo com suporte a Ray Tracing para jogos em 1080p.",
