@@ -3,7 +3,6 @@ import { Button, ButtonGroup } from '@chakra-ui/react'
 import { fetchProducts } from '@/app/lib/data'
 import AddCart from '../icons/addCart'
 import Image from 'next/image'
-import { highlights } from '@/app/seed/initialProducts'
 
 interface dataProps {
   name: string,
@@ -16,7 +15,7 @@ export function CardItem({ product }: { product: dataProps }) {
   const { name, id, price, image_url } = product
 
   return (
-    <section className='rounded-lg flex flex-col py-2 px-2 shadow-lg h-[508px] justify-between bg-white' id={id}>
+    <section className='rounded-lg flex flex-col py-2 px-3 shadow-lg h-[508px] justify-between bg-white' id={id}>
       <div>
         {Array.isArray(image_url) ? (
 
