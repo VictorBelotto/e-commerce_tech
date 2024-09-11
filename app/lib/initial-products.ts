@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   {
     id: "ryzen-5-5600x",
     name: "Ryzen 5 5600X",
