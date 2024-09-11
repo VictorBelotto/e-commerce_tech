@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Button } from '@chakra-ui/react'
-import { fetchProducts } from '@/app/lib/data'
+import { fetchHighlights, fetchProducts } from '@/app/lib/data'
 import AddCart from '../icons/addCart'
 import Image from 'next/image'
 import { ProductProps } from '@/app/lib/definitions'
 
+
 export function CardItem({ product }: { product: ProductProps }) {
   const { name, id, price, image_url } = product
   const images = JSON.parse(image_url)
-  const thumbnail = images.find((image : string) => image.includes('thumbnail'))
+  const thumbnail = images.find((image: string) => image.includes('thumbnail'))
 
   return (
     <section className='rounded-lg flex flex-col py-2 px-3 shadow-lg h-[508px] justify-between bg-white cursor-pointer' id={id}>
@@ -43,14 +44,12 @@ export function CardItem({ product }: { product: ProductProps }) {
 }
 
 export default async function cardWrapper() {
-  const data = await fetchProducts()
-  console.log(data[0])
+  const data = await fetchHighlights()
   return (
     <section className='flex flex-wrap gap-8'>
-    {data.map((data, index) => (
-      <CardItem key={data.id} product={data} />
-    ))}
-  </section>
-    
+        {data.map((data, index) => (
+          <CardItem key={data.id} product={data} />
+        ))}
+    </section>
   )
 }
