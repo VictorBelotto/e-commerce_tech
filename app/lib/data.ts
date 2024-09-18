@@ -37,7 +37,9 @@ export async function fetchProductsByTag() {
       SELECT * FROM product WHERE special_tag = 'highlight'
     `;
     return products.rows;
+
   } catch (error) {
     throw new Error('falha ao carregar produtos pela tag')
   }
 }
+

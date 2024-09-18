@@ -1,8 +1,6 @@
 
 import React, { Suspense } from 'react'
-import { Button } from '@chakra-ui/react'
 import {fetchProducts, fetchProductsByTag } from '@/app/lib/data'
-import AddCart from '../icons/addCart'
 import Image from 'next/image'
 import { ProductProps } from '@/app/lib/definitions'
 import { ButtonAddCart, ButtonBuy } from './buttons'
@@ -17,9 +15,7 @@ export function CardItem({ product }: { product: ProductProps }) {
     <section className='rounded-lg flex flex-col py-2 px-3 shadow-lg h-[508px] justify-between bg-white cursor-pointer' id={id} >
       <div>
         {Array.isArray(images) ? (
-
           <Image priority src={thumbnail} alt={`Imagem ${thumbnail}`} width={288} height={288} />
-
         ) : (
           <div className='w-72 h-48 bg-slate-700 rounded-lg'></div>
         )}
@@ -33,8 +29,8 @@ export function CardItem({ product }: { product: ProductProps }) {
       </div>
       <div>
          <div className='flex gap-4 items-center mt-auto'>
-          <ButtonBuy/>
-          <ButtonAddCart/>
+          <ButtonBuy product={product}/>
+          <ButtonAddCart product={product}/>
         </div>
       </div>
     </section>
@@ -42,10 +38,10 @@ export function CardItem({ product }: { product: ProductProps }) {
 }
 
 export default async function cardWrapper() {
-  const data = await fetchProductsByTag()
+  const data = await fetchProducts()
   return (
     <section className='flex flex-wrap gap-8'>
-      {data.map((data, index) => (
+      {data.map((data) => (
         <CardItem key={data.id} product={data} />
       ))}
     </section>
