@@ -8,5 +8,6 @@ export interface ProductProps {
   technicalInfo : string,
   image_url : string,
   category : string,
-  price : number
+  price : number,
+  special_tag?: string;
 }

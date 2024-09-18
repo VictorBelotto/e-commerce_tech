@@ -1,9 +1,11 @@
+
 import React, { Suspense } from 'react'
 import { Button } from '@chakra-ui/react'
-import { fetchHighlights, fetchProducts } from '@/app/lib/data'
+import {fetchProducts, fetchProductsByTag } from '@/app/lib/data'
 import AddCart from '../icons/addCart'
 import Image from 'next/image'
 import { ProductProps } from '@/app/lib/definitions'
+import { ButtonAddCart, ButtonBuy } from './buttons'
 
 
 export function CardItem({ product }: { product: ProductProps }) {
@@ -12,11 +14,11 @@ export function CardItem({ product }: { product: ProductProps }) {
   const thumbnail = images.find((image: string) => image.includes('thumbnail'))
 
   return (
-    <section className='rounded-lg flex flex-col py-2 px-3 shadow-lg h-[508px] justify-between bg-white cursor-pointer' id={id}>
+    <section className='rounded-lg flex flex-col py-2 px-3 shadow-lg h-[508px] justify-between bg-white cursor-pointer' id={id} >
       <div>
         {Array.isArray(images) ? (
 
-          <Image src={thumbnail} alt={`Imagem ${thumbnail}`} width={288} height={192} />
+          <Image priority src={thumbnail} alt={`Imagem ${thumbnail}`} width={288} height={288} />
 
         ) : (
           <div className='w-72 h-48 bg-slate-700 rounded-lg'></div>
@@ -24,19 +26,15 @@ export function CardItem({ product }: { product: ProductProps }) {
 
       </div>
       <div className='flex flex-col gap-4 mt-4'>
-        <p className='w-72 font-bold h-14 overflow-hidden break-words'>{name}</p>
+        <p className='w-72 font-bold h-14 overflow-hidden break-words'>{id}</p>
         <p className='font-semibold text-xl'>
           {`R$ ${price}`}
         </p>
       </div>
       <div>
-        <div className='flex gap-4 items-center mt-auto'>
-          <Button variant='solid' colorScheme='blue' className='w-36' >
-            Comprar
-          </Button>
-          <Button variant="ghost" >
-            <AddCart />
-          </Button>
+         <div className='flex gap-4 items-center mt-auto'>
+          <ButtonBuy/>
+          <ButtonAddCart/>
         </div>
       </div>
     </section>
@@ -44,12 +42,12 @@ export function CardItem({ product }: { product: ProductProps }) {
 }
 
 export default async function cardWrapper() {
-  const data = await fetchHighlights()
+  const data = await fetchProductsByTag()
   return (
     <section className='flex flex-wrap gap-8'>
-        {data.map((data, index) => (
-          <CardItem key={data.id} product={data} />
-        ))}
+      {data.map((data, index) => (
+        <CardItem key={data.id} product={data} />
+      ))}
     </section>
   )
 }
