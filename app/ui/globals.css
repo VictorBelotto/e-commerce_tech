@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body{ 
+  @apply !bg-[#f2f3f4]
+}
 h1 {
   @apply text-4xl md:text-5xl lg:text-6xl font-bold;
 }

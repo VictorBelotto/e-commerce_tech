@@ -11,3 +11,4 @@ export interface ProductProps {
   price : number,
   special_tag?: string;
 }
+

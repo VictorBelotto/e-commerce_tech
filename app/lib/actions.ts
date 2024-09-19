@@ -26,13 +26,12 @@ export function removeItemCart(id : string){
     cartArray = JSON.parse(cartStored)
   }
 
-  cartArray.filter((item: ProductProps) => item.id !== id)
-
+  cartArray = cartArray.filter((item: ProductProps) => item.id !== id)
+  console.log('Cart: ', cartArray)
   const newCartStorage = JSON.stringify(cartArray)
 
   localStorage.setItem('cart', newCartStorage)
 
-  revalidatePath('/cart')
 }
 
 export function fetchCart() {

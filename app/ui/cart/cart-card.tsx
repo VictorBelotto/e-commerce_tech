@@ -9,30 +9,30 @@ export const Card = ({product} : {product : ProductProps}) => {
   const images = JSON.parse(image_url)
   const thumbnail = images.find((image: string) => image.includes('thumbnail'))
   return (
-    <section className='flex bg-white rounded-lg shadow-lg w-fit px-4 py-2'>
+    <main className='flex bg-white rounded-lg shadow-lg w-fit px-4 py-2'>
       {
         thumbnail ?
           (
-            <Image src={thumbnail} width={110} height={110} alt={`imagem `} />
+            <Image src={thumbnail} width={130} height={130} alt={`imagem ${thumbnail}`} className='object-cover'/>
           ) :
           (
             <span className='w-[110px] h-[110px] bg-gray-500' />
           )
       }
-      <div className='px-3 py-6 flex gap-12'>
+      <div className='px-3 py-3 flex gap-12'>
         <div className='flex'>
           <a className='font-semibold w-80'>{name}</a>
         </div>
-        <div className='flex flex-col items-center '>
+        <div className='flex flex-col items-center gap-3'>
           <p className='text-base'>quant.</p>
           <p className='font-semibold text-base'>{`< 1 >`}</p>
           <ButtonRemoveToCart id={id} />
         </div>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-3'>
           <p className='text-base'>Preço à vista:</p>
           <a className='font-semibold'>{`R$ ${price}`}</a>
         </div>
       </div>
-    </section>
+    </main>
   )
 }
