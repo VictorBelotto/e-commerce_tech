@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@chakra-ui/react'
+import { Button, color } from '@chakra-ui/react'
 import React from 'react'
 import AddCart from '../icons/addCart'
 import { ProductProps } from '@/app/lib/definitions'
@@ -34,7 +34,7 @@ export function ButtonRemoveToCart({ id }: { id: string }) {
   const  removeItemFromCart  = useCartStore((state) => state.removeItemFromCart);
   return (
     <>
-      <Button onClick={() => removeItemFromCart(id)} size={"sm"}>
+      <Button onClick={() => removeItemFromCart(id)} size={"sm"}  color={'white'} colorScheme='red' >
         Remover
       </Button>
     </>

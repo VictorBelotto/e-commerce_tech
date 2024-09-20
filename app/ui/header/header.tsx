@@ -17,9 +17,7 @@ export default function Header() {
         <Link href='/cart'>
           <Cart className="cursor-pointer" />
         </Link>
-
       </div>
-
     </header>
   )
 }

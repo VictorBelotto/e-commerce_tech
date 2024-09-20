@@ -1,9 +1,10 @@
 
-import React, { Suspense } from 'react'
-import {fetchProducts, fetchProductsByTag } from '@/app/lib/data'
+
+import React from 'react'
 import Image from 'next/image'
 import { ProductProps } from '@/app/lib/definitions'
 import { ButtonAddCart, ButtonBuy } from './buttons'
+import { formatCurrencyBRL } from '@/app/lib/utils'
 
 
 export function CardItem({ product }: { product: ProductProps }) {
@@ -22,9 +23,9 @@ export function CardItem({ product }: { product: ProductProps }) {
 
       </div>
       <div className='flex flex-col gap-4 mt-4'>
-        <p className='w-72 font-bold h-14 overflow-hidden break-words'>{id}</p>
+        <p className='w-72 font-bold h-14 overflow-hidden break-words'>{name}</p>
         <p className='font-semibold text-xl'>
-          {`R$ ${price}`}
+          {formatCurrencyBRL(price)}
         </p>
       </div>
       <div>
@@ -33,17 +34,6 @@ export function CardItem({ product }: { product: ProductProps }) {
           <ButtonAddCart product={product}/>
         </div>
       </div>
-    </section>
-  )
-}
-
-export default async function cardWrapper() {
-  const data = await fetchProducts()
-  return (
-    <section className='flex flex-wrap gap-8'>
-      {data.map((data) => (
-        <CardItem key={data.id} product={data} />
-      ))}
     </section>
   )
 }

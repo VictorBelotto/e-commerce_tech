@@ -1,6 +1,5 @@
 import { Suspense } from "react";
-import CardWrapper from "./ui/card/card-item";
-
+import CardWrapper from "./ui/card/card-wrapper";
 export default function Home() {
 
   return (
