@@ -1,16 +1,17 @@
-import React from 'react'
+import Product from '@/app/ui/product-page/product'
+import React, { Suspense } from 'react'
 
-interface Props{
-  params : {id : string}
+interface Props {
+  params: { id: string }
 }
 
-function ProductID({params} : Props) {
-
-
+function ProductID({ params }: Props) {
   return (
-    <div>
-      <h1>{params.id}</h1>
-    </div>
+    <section >
+      <Suspense fallback={<p>Carregando...</p>}>
+        <Product id={params.id} />
+      </Suspense>
+    </section>
   )
 }
 

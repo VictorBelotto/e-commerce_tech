@@ -5,7 +5,7 @@ export interface ProductProps {
   manufacturer : string,
   stock : number,
   description : string,
-  technicalInfo : string,
+  technicalinfo : string,
   image_url : string,
   category : string,
   price : number,

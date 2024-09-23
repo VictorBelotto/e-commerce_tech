@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 
 export function CardItem({ product }: { product: ProductProps }) {
-  const { name, id, price, image_url } = product
+  const { name, id, price, image_url, technicalInfo } = product
   const images = JSON.parse(image_url)
   const thumbnail = images.find((image: string) => image.includes('thumbnail'))
 

@@ -21,7 +21,7 @@ export async function fetchProductById(id: string) {
     await new Promise((resolve) => setTimeout(resolve, 300));
     const products = await sql<ProductProps> `SELECT * FROM product WHERE id = ${id}`
 
-    return products.rows
+    return products.rows[0]
 
   } catch (error) {
     console.error('Error: ', error)
