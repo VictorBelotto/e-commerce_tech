@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./ui/globals.css";
 import Header from "./ui/header/header";
-
 import { ChakraProvider } from '@chakra-ui/react'
+
+import { ClerkProvider } from '@clerk/nextjs'
+import { ptBR } from "@clerk/localizations";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
-      <body className={inter.className}>
-        <ChakraProvider>
-          <Header />
-          {children}
-        </ChakraProvider>
-      </body>
-    </html>
+    <ClerkProvider localization={ptBR}>
+      <html lang="pt-br" className="">
+        <body className={inter.className}>
+          <ChakraProvider>
+            <Header />
+            {children}
+          </ChakraProvider>
+        </body>
+      </html>
+    </ClerkProvider>
+
   );
 }
