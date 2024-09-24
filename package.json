@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "prisma generate && next dev",
+    "build": "prisma generate && prisma db push && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -16,9 +16,11 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@fancyapps/ui": "^5.0.36",
+    "@prisma/client": "^5.20.0",
     "@vercel/postgres": "^0.10.0",
     "framer-motion": "^11.5.3",
     "next": "14.2.7",
+    "prisma": "^5.20.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zustand": "5.0.0-rc.2"
