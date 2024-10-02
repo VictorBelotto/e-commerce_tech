@@ -8,7 +8,8 @@ export const products = [
     technicalInfo: "6 núcleos, 12 threads, 3.7GHz base clock, 4.6GHz boost clock, socket AM4",
     image_url: ['/processors/ryzen-5-thumbnail.jpeg', '/processors/ryzen-generic-box.jpeg', '/public/processors/ryzen-generic-box.jpeg'],
     category: "Processor",
-    price: 299.99
+    price: 299.99,
+    special_tag : 'none'
   },
   {
     id: "intel-core-i7-11700k",
@@ -19,7 +20,8 @@ export const products = [
     technicalInfo: "8 núcleos, 16 threads, 3.6GHz base clock, 5.0GHz boost clock, socket LGA1200",
     image_url: ['/processors/intel-i7-thumbnail.jpeg', '/processors/intel-generic-processor.jpeg'],
     category: "Processor",
-    price: 399.99
+    price: 399.99,
+    special_tag : 'none'
   },
   {
     id: "ryzen-9-5900x",
@@ -30,7 +32,8 @@ export const products = [
     technicalInfo: "12 núcleos, 24 threads, 3.7GHz base clock, 4.8GHz boost clock, socket AM4",
     image_url: ['/processors/ryzen-9-thumbnail.jpeg', '/processors/ryzen-generic-box.jpeg', '/public/processors/ryzen-generic-box.jpeg'],
     category: "Processor",
-    price: 549.99
+    price: 549.99,
+    special_tag : 'none'
   },
   {
     id: "intel-core-i9-11900k",
@@ -41,7 +44,8 @@ export const products = [
     technicalInfo: "8 núcleos, 16 threads, 3.5GHz base clock, 5.3GHz boost clock, socket LGA1200",
     image_url: ['/processors/intel-i9-thumbnail.jpeg', '/processors/intel-generic-processor.jpeg'],
     category: "Processor",
-    price: 599.99
+    price: 599.99,
+    special_tag : 'none'
   },
   {
     id: "ryzen-7-5800x",
@@ -52,7 +56,8 @@ export const products = [
     technicalInfo: "8 núcleos, 16 threads, 3.8GHz base clock, 4.7GHz boost clock, socket AM4",
     image_url: ['/processors/ryzen-7-thumbnail.jpeg', '/processors/ryzen-generic-box.jpeg', '/public/processors/ryzen-generic-box.jpeg'],
     category: "Processor",
-    price: 449.99
+    price: 449.99,
+    special_tag : 'none'
   },
   {
     id: "b550m-gigabyte",
@@ -63,7 +68,8 @@ export const products = [
     technicalInfo: "Socket AM4, suporte a DDR4, 4 slots de RAM, formato ATX",
     image_url: ['/motherBoards/gigabyte-b550m-thumbnail.jpeg', '/motherBoards/gigabyte-b550m-motherBoard.jpeg'],
     category: "Motherboard",
-    price: 89.99
+    price: 89.99,
+    special_tag : 'none'
   },
   {
     id: "z590-gigabyte",
@@ -74,7 +80,8 @@ export const products = [
     technicalInfo: "Socket LGA1200, suporte a DDR4, 4 slots de RAM, formato ATX",
     image_url: ['/motherBoards/gigabyte-z590-thumbnail.jpeg', '/motherBoards/gigabyte-z590-motherBoard.jpeg'],
     category: "Motherboard",
-    price: 199.99
+    price: 199.99,
+    special_tag : 'none'
   },
   {
     id: "x570-asrock",
@@ -85,7 +92,8 @@ export const products = [
     technicalInfo: "Socket AM4, suporte a DDR4, 4 slots de RAM, PCIe 4.0, formato ATX",
     image_url: ['/motherBoards/asrock-x570-thumbnail.jpeg', '/motherBoards/asrock-x570-motherBoard.jpeg'],
     category: "Motherboard",
-    price: 249.99
+    price: 249.99,
+    special_tag : 'none'
   },
   {
     id: "b450-tuf-gaming-asus",
@@ -96,7 +104,8 @@ export const products = [
     technicalInfo: "Socket AM4, suporte a DDR4, formato ATX",
     image_url: ['/motherBoards/asus-b450-thumbnail.jpeg', '/motherBoards/asus-b450-motherBoard.jpeg'],
     category: "Motherboard",
-    price: 119.99
+    price: 119.99,
+    special_tag : 'none'
   },
   {
     id: "msi-rtx-3060",
@@ -107,7 +116,8 @@ export const products = [
     technicalInfo: "12GB GDDR6, Ray Tracing, PCIe 4.0",
     image_url: ['/graphicsCards/msi-rtx-3060-thumbnail.jpeg', '/graphicsCards/msi-rtx-3060-graphicCard.jpeg'],
     category: "Graphics Card",
-    price: 399.99
+    price: 399.99,
+    special_tag : 'none'
   },
   {
     id: "asrock-rx-6600",
@@ -118,7 +128,8 @@ export const products = [
     technicalInfo: "8GB GDDR6, PCIe 4.0",
     image_url: ['/graphicsCards/asrock-rx-6600-thumbnail.jpeg', '/graphicsCards/asrock-rx-6600-graphicCard.jpeg'],
     category: "Graphics Card",
-    price: 479.99
+    price: 479.99,
+    special_tag : 'none'
   },
   {
     id: "asus-rtx-4060",
@@ -129,6 +140,7 @@ export const products = [
     technicalInfo: "10GB GDDR6X, Ray Tracing, PCIe 4.0",
     image_url: ['/graphicsCards/msi-rtx-3060-thumbnail.jpeg', '/graphicsCards/msi-rtx-3060-graphicCard.jpeg'],
     category: "Graphics Card",
-    price: 699.99
+    price: 699.99,
+    special_tag : 'none'
   }
 ];

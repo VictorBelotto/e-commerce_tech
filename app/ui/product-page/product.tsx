@@ -8,8 +8,7 @@ import { formatCurrencyBRL } from '@/app/lib/utils'
 import { ButtonAddCart, ButtonBuy } from '../card/buttons'
 
 export default async function Product({ id }: { id: string }) {
-  const product = await fetchProductById(id)
-  const image = JSON.parse(product.image_url)
+  const product: ProductProps = await fetchProductById(id)
   return (
     <section className='flex flex-col w-full items-center py-8  gap-4'>
       <main className='flex flex-col w-full max-w-[1080px] gap-9 bg-white py-5  px-5 rounded-lg shadow-md'>
@@ -20,7 +19,7 @@ export default async function Product({ id }: { id: string }) {
               <p className='text-xl font-semibold'>{product.manufacturer}</p>
               <Favorite className=' stroke-gray-600  ' />
             </div>
-            <Image src={image[0]} alt={`Imagem %{images[0]}`} width={250} height={300} />
+            <Image src={product.image_url[0]} alt={`Imagem %{images[0]}`} width={250} height={300} />
             
           </div>
 

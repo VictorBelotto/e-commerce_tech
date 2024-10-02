@@ -14,7 +14,6 @@ function Login() {
         </SignInButton>
       </SignedOut>
 
-
     </div>
   )
 }

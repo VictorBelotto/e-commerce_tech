@@ -1,45 +1,57 @@
-import { sql } from "@vercel/postgres";
+import { PrismaClient } from "@prisma/client";
 import { ProductProps } from "./definitions";
-import { revalidatePath } from "next/cache";
 
+const prisma = new PrismaClient();
 
-export async function fetchProducts() {
-
+export async function fetchProducts() : Promise<ProductProps[]>{
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    const products = await sql<ProductProps> `SELECT * FROM product`
-    return products.rows
+    const products = await prisma.product.findMany();
+    
+    return products.map((product) => ({
+      ...product,
+      image_url: JSON.parse(product.image_url) as string[],
+    })) as ProductProps[];
   } catch (error) {
-    console.error('Error: ', error)
-    throw new Error('Falha ao carregar produtos.');
-  }
-
-}
-
-export async function fetchProductById(id: string) {
-  try {
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    const products = await sql<ProductProps> `SELECT * FROM product WHERE id = ${id}`
-
-    return products.rows[0]
-
-  } catch (error) {
-    console.error('Error: ', error)
+    console.error('Error: ', error);
     throw new Error('Falha ao carregar produtos.');
   }
 }
 
-
-export async function fetchProductsByTag() {
-  const ids = ['7852e3f0-a36f-4fbb-af26-d15e3ff0d7ee', 'cc268cf7-b795-4ef8-a76c-747fc4fa0964', 'cdef65ee-89d4-41b6-8935-47262ebbb229']
+export async function fetchProductById(id: string) : Promise<ProductProps> {
   try {
-    const products = await sql<ProductProps>`
-      SELECT * FROM product WHERE special_tag = 'highlight'
-    `;
-    return products.rows;
+    const product = await prisma.product.findUnique({
+      where: { id },
+    });
 
+    if (product) {
+      return {
+        ...product,
+        image_url: JSON.parse(product.image_url) as string[],
+      } as ProductProps
+    }
+
+    throw new Error('Produto não encontrado.');
   } catch (error) {
-    throw new Error('falha ao carregar produtos pela tag')
+    console.error('Error: ', error);
+    throw new Error('Falha ao carregar produto.');
   }
 }
 
+export async function fetchProductsByTag() : Promise<ProductProps[]>{
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        special_tag: 'highlight',
+      },
+    });
+    
+    return products.map((product) => ({
+      ...product,
+      image_url: JSON.parse(product.image_url) as string[],
+    })) as ProductProps[]
+    
+  } catch (error) {
+    console.error('Error: ', error);
+    throw new Error('Falha ao carregar produtos pela tag.');
+  }
+}

@@ -8,10 +8,16 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") 
 }
 
-model User {
-  id             String   @id @default(uuid()) 
-  externalId     String @unique
-  attributes     Json  
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+model Product {
+  id            String  @id @default(uuid()) @db.Uuid
+  name          String
+  manufacturer  String
+  stock         Int
+  description   String
+  technicalinfo String
+  image_url     String
+  category      String
+  price         Float
+  special_tag   String?
 }
+
