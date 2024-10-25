@@ -3,6 +3,7 @@ import Cart from "../icons/cart";
 import Favorite from "../icons/favorite";
 import Search from "./search";
 import Login from "./login";
+import CartComponent from "./cart";
 
 export default function Header() {
   return (
@@ -14,11 +15,13 @@ export default function Header() {
         <Search />
       </div>
       <div className="flex gap-9">
-        <Login/>
         <Favorite className="cursor-pointer" />
+
         <Link href='/cart'>
-          <Cart className="cursor-pointer" />
+          <CartComponent />
         </Link>
+
+        <Login />
       </div>
     </header>
   )

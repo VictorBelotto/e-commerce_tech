@@ -7,7 +7,7 @@ export default async function CardWrapper() {
   const data = await fetchProducts()
   return (
     <section className='flex flex-wrap gap-8'>
-      {data.map((data) => (
+        {data.map((data) => (
         <CardItem key={data.id} product={data} />
       ))}
     </section>

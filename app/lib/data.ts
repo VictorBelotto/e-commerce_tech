@@ -1,57 +1,58 @@
 import { PrismaClient } from "@prisma/client";
-import { ProductProps } from "./definitions";
+import { ProductProps, ProductProps2 } from "./definitions";
+import Stripe from "stripe"
 
 const prisma = new PrismaClient();
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2024-09-30.acacia",
+ })
+
 export async function fetchProducts() : Promise<ProductProps[]>{
   try {
-    const products = await prisma.product.findMany();
-    
-    return products.map((product) => ({
-      ...product,
-      image_url: JSON.parse(product.image_url) as string[],
-    })) as ProductProps[];
+    const products = await stripe.products.list()
+    const formatedProducts = await Promise.all(
+      products.data.map(async (product) => {
+        const price = await stripe.prices.list({ product: product.id })
+        return {
+         id: product.id,
+         name: product.name,
+         manufacturer: product.metadata.manufacturer,
+         technicalInfo: product.metadata.technicalInfo,
+         image_url: product.images,
+         category: product.metadata.category,
+         description: product.description,
+         price: price.data[0].unit_amount,
+         special_tag: product.metadata.special_tag,
+        }
+      }),
+    )
+    return formatedProducts
   } catch (error) {
-    console.error('Error: ', error);
-    throw new Error('Falha ao carregar produtos.');
+    throw new Error('Erro ao carregar produto')
   }
 }
 
-export async function fetchProductById(id: string) : Promise<ProductProps> {
+export async function fetchProductById(productId: string): Promise<ProductProps | null> {
   try {
-    const product = await prisma.product.findUnique({
-      where: { id },
-    });
+    const product = await stripe.products.retrieve(productId);
 
-    if (product) {
-      return {
-        ...product,
-        image_url: JSON.parse(product.image_url) as string[],
-      } as ProductProps
-    }
+    const price = await stripe.prices.list({ product: product.id });
 
-    throw new Error('Produto não encontrado.');
+    return {
+      id: product.id,
+      name: product.name,
+      manufacturer: product.metadata.manufacturer || '',
+      technicalInfo: product.metadata.technicalInfo || '',
+      image_url: product.images, 
+      category: product.metadata.category || '',
+      description: product.description || '',
+      price: price.data[0]?.unit_amount || 0, 
+      special_tag: product.metadata.special_tag || '',
+    };
   } catch (error) {
-    console.error('Error: ', error);
-    throw new Error('Falha ao carregar produto.');
+    console.error('Erro ao carregar produto:', error);
+    return null;
   }
 }
 
-export async function fetchProductsByTag() : Promise<ProductProps[]>{
-  try {
-    const products = await prisma.product.findMany({
-      where: {
-        special_tag: 'highlight',
-      },
-    });
-    
-    return products.map((product) => ({
-      ...product,
-      image_url: JSON.parse(product.image_url) as string[],
-    })) as ProductProps[]
-    
-  } catch (error) {
-    console.error('Error: ', error);
-    throw new Error('Falha ao carregar produtos pela tag.');
-  }
-}

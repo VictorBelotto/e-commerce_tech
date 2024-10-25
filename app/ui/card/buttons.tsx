@@ -4,26 +4,15 @@ import { Button, color } from '@chakra-ui/react'
 import React from 'react'
 import AddCart from '../icons/addCart'
 import { ProductProps } from '@/app/lib/definitions'
-import { fetchCart, removeItemCart } from '@/app/lib/actions'
-import { useCartStore } from '@/app/context/cart-context'
+import { useCartStore } from '@/app/context/store'
 
 
-
-export function ButtonBuy({ product }: { product: ProductProps }) {
-  return (
-    <>
-      <Button variant='solid' colorScheme='blue' className='w-36' onClick={() => fetchCart()}>
-        Comprar
-      </Button>
-    </>
-  )
-}
 
 export function ButtonAddCart({ product }: { product: ProductProps }) {
-  const  addItemToCart  = useCartStore((state) => state.addItemToCart);
+  const  {addToCart}  = useCartStore();
   return (
     <>
-      <Button variant="ghost" onClick={() => addItemToCart(product)}>
+      <Button variant="ghost" onClick={() => addToCart(product)}>
         <AddCart />
       </Button>
     </>
@@ -31,10 +20,10 @@ export function ButtonAddCart({ product }: { product: ProductProps }) {
 }
 
 export function ButtonRemoveToCart({ id }: { id: string }) {
-  const  removeItemFromCart  = useCartStore((state) => state.removeItemFromCart);
+  const  {removeFromCart}  = useCartStore();
   return (
     <>
-      <Button onClick={() => removeItemFromCart(id)} size={"sm"}  color={'white'} colorScheme='red' >
+      <Button onClick={() => removeFromCart(id)} size={"sm"}  color={'white'} colorScheme='red' >
         Remover
       </Button>
     </>

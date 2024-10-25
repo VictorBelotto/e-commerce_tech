@@ -1,4 +1,3 @@
-import { revalidatePath } from "next/cache"
 import { ProductProps } from "./definitions"
 
 export function addItemToCart(product: ProductProps) {

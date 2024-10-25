@@ -3,7 +3,6 @@ import React from 'react'
 import { ProductProps } from '@/app/lib/definitions'
 import Favorite from '../icons/favorite'
 import Image from 'next/image'
-import img from '/processors/ryzen-5-thumbnail.jpeg'
 import { formatCurrencyBRL } from '@/app/lib/utils'
 import { ButtonAddCart, ButtonBuy } from '../card/buttons'
 
@@ -19,7 +18,7 @@ export default async function Product({ id }: { id: string }) {
               <p className='text-xl font-semibold'>{product.manufacturer}</p>
               <Favorite className=' stroke-gray-600  ' />
             </div>
-            <Image src={product.image_url[0]} alt={`Imagem %{images[0]}`} width={250} height={300} />
+            <Image src={product.image_url[0]} alt={`Imagem ${product.image_url[0]}`} width={250} height={300} />
             
           </div>
 
@@ -43,7 +42,7 @@ export default async function Product({ id }: { id: string }) {
 
       <main className='flex flex-col w-full max-w-[1080px] gap-2 bg-white py-5  px-5 rounded-lg shadow-md'>
         <h4 className='font-semibold uppercase'>Informações técnicas</h4>
-        <p>{product.technicalinfo}</p>
+        <p>{product.technicalInfo}</p>
       </main>
 
     </section>

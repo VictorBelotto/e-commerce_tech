@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { ProductProps } from '@/app/lib/definitions'
-import { ButtonAddCart, ButtonBuy } from './buttons'
+import { ButtonAddCart,  } from './buttons'
 import { formatCurrencyBRL } from '@/app/lib/utils'
 import Link from 'next/link'
 
@@ -12,8 +12,9 @@ export function CardItem({ product }: { product: ProductProps }) {
   return (
     <section className='rounded-lg flex flex-col py-2 px-3 shadow-lg h-[508px] justify-between bg-white cursor-pointer' id={id} >
       <Link href={`product/${id}`}>
+      </Link>
         <div>
-          {Array.isArray(image_url) ? (
+          {image_url ? (
             <Image src={image_url[0]} alt={`Imagem ${image_url[0]}`} width={288} height={288} />
           ) : (
             <div className='w-72 h-48 bg-slate-700 rounded-lg'></div>
@@ -28,11 +29,10 @@ export function CardItem({ product }: { product: ProductProps }) {
         </div>
         <div>
           <div className='flex gap-4 items-center mt-auto'>
-            <ButtonBuy product={product} />
             <ButtonAddCart product={product} />
           </div>
         </div>
-      </Link>
+     
     </section>
   )
 }
