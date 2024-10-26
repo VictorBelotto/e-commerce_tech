@@ -6,6 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 import { ClerkProvider } from '@clerk/nextjs'
 import { ptBR } from "@clerk/localizations";
+import Hydrate from "./ui/components/hydrate";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +24,12 @@ export default function RootLayout({
     <ClerkProvider localization={ptBR}>
       <html lang="pt-br" className="">
         <body className={inter.className}>
-          <ChakraProvider>
-            <Header />
-            {children}
-          </ChakraProvider>
+          <Hydrate>
+            <ChakraProvider>
+              <Header />
+              {children}
+            </ChakraProvider>
+          </Hydrate>
         </body>
       </html>
     </ClerkProvider>
