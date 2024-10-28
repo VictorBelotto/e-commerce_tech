@@ -1,9 +1,8 @@
 import React from 'react'
-import { products } from '@/app/lib/initial-products'
 import Image from 'next/image'
 import { ProductProps } from '@/app/lib/definitions'
 import { formatCurrencyBRL } from '@/app/lib/utils'
-import { ButtonRemoveToCart } from '../card/buttons'
+import { ButtonRemoveToCart } from './buttons-cart' 
 
 export const Card = ({ product }: { product: ProductProps }) => {
   const { name, price, image_url, id } = product

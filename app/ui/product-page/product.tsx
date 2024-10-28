@@ -4,7 +4,7 @@ import { ProductProps } from '@/app/lib/definitions'
 import Favorite from '../icons/favorite'
 import Image from 'next/image'
 import { formatCurrencyBRL } from '@/app/lib/utils'
-import { ButtonAddCart } from '../card/buttons'
+import { ButtonAddCart } from '../components/buttons'
 
 export default async function Product({ id }: { id: string }) {
   const product: ProductProps | null = await fetchProductById(id)
