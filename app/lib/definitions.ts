@@ -9,12 +9,5 @@ export interface ProductProps {
   category : string,
   price : number | null,
   special_tag : string | null,
-}
-
-export interface ProductProps2{
-  id: string,
-  price: number | null,
-  name: string,
-  description: string | null,
-  special_tag: string | null,
+  quantity? : number,
 }

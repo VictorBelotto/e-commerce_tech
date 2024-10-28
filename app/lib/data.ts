@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ProductProps, ProductProps2 } from "./definitions";
+import { ProductProps } from "./definitions";
 import Stripe from "stripe"
 
 const prisma = new PrismaClient();
@@ -24,6 +24,7 @@ export async function fetchProducts() : Promise<ProductProps[]>{
          description: product.description,
          price: price.data[0].unit_amount,
          special_tag: product.metadata.special_tag,
+         quantity: 1,
         }
       }),
     )

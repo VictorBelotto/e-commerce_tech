@@ -6,16 +6,34 @@ interface CartState{
   cart: ProductProps[];
   addToCart: (product: ProductProps) => void;
   removeFromCart: (productId: string) => void;
+  removeQuantity: (productId: string) => void;
 }
 
 export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       cart: [],
-      addToCart: (product: ProductProps) => {
-        set((state) => ({
-          cart: [...state.cart, product],
-        }));
+      addToCart: (product) => {
+        set((state) => {
+          const updatedCart = state.cart.find(p => p.id === product.id)
+          if (updatedCart) {
+            updatedCart.quantity = (updatedCart.quantity || 0) + 1
+            return { cart: [...state.cart] }
+          }else{
+            return { cart: [...state.cart, {...product, quantity: 1 }] }
+          }
+        });
+      },
+      removeQuantity: (productId: string) => {
+        set((state) =>{
+          const updatedCart = state.cart.find(p => p.id === productId)
+          if(updatedCart){
+            updatedCart.quantity = (updatedCart.quantity || 1) > 1? (updatedCart.quantity || 1) - 1 : 1
+            return { cart: [...state.cart] }
+          }else{
+            return state;
+          }
+        })
       },
       removeFromCart: (productId: string) => {
         set((state) => ({
