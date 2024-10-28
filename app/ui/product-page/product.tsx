@@ -4,10 +4,15 @@ import { ProductProps } from '@/app/lib/definitions'
 import Favorite from '../icons/favorite'
 import Image from 'next/image'
 import { formatCurrencyBRL } from '@/app/lib/utils'
-import { ButtonAddCart, ButtonBuy } from '../card/buttons'
+import { ButtonAddCart } from '../card/buttons'
 
 export default async function Product({ id }: { id: string }) {
-  const product: ProductProps = await fetchProductById(id)
+  const product: ProductProps | null = await fetchProductById(id)
+  if (!product) {
+    return <p>Produtos não encontrados</p>
+  }
+  const valorParcelado = ((product.price ?? 0) * 0.1) + (product.price ?? 0)
+  const parcelas = (product.price?? 0) / 10
   return (
     <section className='flex flex-col w-full items-center py-8  gap-4'>
       <main className='flex flex-col w-full max-w-[1080px] gap-9 bg-white py-5  px-5 rounded-lg shadow-md'>
@@ -25,12 +30,11 @@ export default async function Product({ id }: { id: string }) {
           <div className='flex flex-col gap-4 w-[45%]'>
             <h3>{formatCurrencyBRL(product.price)}</h3>
             <div className='flex gap-4 items-center'>
-              <ButtonBuy product={product} />
               <ButtonAddCart product={product} />
             </div>
             <p>Á vista no PIX com até 10% <b>OFF</b></p>
-            <p>{formatCurrencyBRL((product.price * 0.1) + product.price)}</p>
-            <p>Em até 10x de <b>{formatCurrencyBRL(product.price / 10)}</b> sem juros</p>
+            <p>{formatCurrencyBRL(valorParcelado)}</p>
+            <p>Em até 10x de <b>{formatCurrencyBRL(parcelas)}</b> sem juros</p>
           </div>
         </div>
       </main>
