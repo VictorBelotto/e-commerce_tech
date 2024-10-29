@@ -2,12 +2,11 @@ import { useCartStore } from "@/app/context/store";
 import { Button } from "@chakra-ui/react";
 import RemoveQuantifyIcon from "../icons/removeQuantifyIcon";
 import { ProductProps } from "@/app/lib/definitions";
-import AddQuantifyIcon from "../icons/AddQuantifyIcon";
+import AddQuantifyIcon from "../icons/addQuantifyIcon";
 
 export function ButtonRemoveToCart({ id }: { id: string }) {
   const { removeFromCart } = useCartStore();
   return (
-
     <Button onClick={() => removeFromCart(id)} size={"sm"} color={'white'} colorScheme='red' >
       Remover
     </Button>

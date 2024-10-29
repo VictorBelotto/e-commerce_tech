@@ -28,7 +28,7 @@ export function CardItem({ product }: { product: ProductProps }) {
         </div>
       </Link>
       <div>
-        <div className='flex gap-4 items-center mt-auto'>
+        <div className='flex gap-4 items-center mt-auto justify-center'>
           <ButtonAddCart product={product} />
         </div>
       </div>
