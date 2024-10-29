@@ -25,6 +25,7 @@ export async function fetchProducts() : Promise<ProductProps[]>{
          price: price.data[0].unit_amount,
          special_tag: product.metadata.special_tag,
          quantity: 1,
+         department: product.metadata.department
         }
       }),
     )
@@ -50,6 +51,7 @@ export async function fetchProductById(productId: string): Promise<ProductProps 
       description: product.description || '',
       price: price.data[0]?.unit_amount || 0, 
       special_tag: product.metadata.special_tag || '',
+      department: product.metadata.department || ''
     };
   } catch (error) {
     console.error('Erro ao carregar produto:', error);

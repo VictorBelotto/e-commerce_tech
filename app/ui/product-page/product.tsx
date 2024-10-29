@@ -37,7 +37,7 @@ export default async function Product({ id }: { id: string }) {
             <p>Á vista no PIX com até 10% <b>OFF</b></p>
             <div className='flex flex-col mt-4'>
               <p className='font-bold'>{formatCurrencyBRL(valorParcelado)}</p>
-              <p>Em até {(valorParcelado / 100) > 90 ? '10x' : '1x'} de <b>{(valorParcelado / 100) > 90 ? formatCurrencyBRL(parcelas) : formatCurrencyBRL(valorParcelado)}</b> sem juros no cartão</p>              
+              <p>Em até {(valorParcelado / 100) > 90 ? '10x' : '1x'} de <b>{(valorParcelado / 100) > 90 ? formatCurrencyBRL(parcelas) : formatCurrencyBRL(valorParcelado)}</b> sem juros no cartão</p>       
             </div>
           </div>
         </div>

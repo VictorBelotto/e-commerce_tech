@@ -10,4 +10,5 @@ export interface ProductProps {
   price : number | null,
   special_tag : string | null,
   quantity? : number,
+  department : string
 }
