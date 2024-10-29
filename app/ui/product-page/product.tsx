@@ -1,13 +1,14 @@
-import { fetchProductById } from '@/app/lib/data'
+'use client'
 import React from 'react'
-import { ProductProps } from '@/app/lib/definitions'
 import Favorite from '../icons/favorite'
 import Image from 'next/image'
 import { formatCurrencyBRL } from '@/app/lib/utils'
 import { ButtonAddCart } from '../components/buttons'
+import { useProducts } from '@/hooks/useProducts'
 
-export default async function Product({ id }: { id: string }) {
-  const product: ProductProps | null = await fetchProductById(id)
+export default function Product({ id }: { id: string }) {
+  const {products} = useProducts()
+  const product = products?.find((p) => p.id === id)
   if (!product) {
     return <p>Produtos não encontrados</p>
   }
