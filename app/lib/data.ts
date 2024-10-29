@@ -1,12 +1,11 @@
-import { PrismaClient } from "@prisma/client";
+'use server'
+
 import { ProductProps } from "./definitions";
 import Stripe from "stripe"
 
-const prisma = new PrismaClient();
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-09-30.acacia",
- })
+});
 
 export async function fetchProducts() : Promise<ProductProps[]>{
   try {
@@ -34,6 +33,7 @@ export async function fetchProducts() : Promise<ProductProps[]>{
     throw new Error('Erro ao carregar produto')
   }
 }
+
 
 export async function fetchProductById(productId: string): Promise<ProductProps | null> {
   try {

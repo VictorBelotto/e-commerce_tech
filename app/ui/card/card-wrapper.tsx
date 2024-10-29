@@ -1,14 +1,15 @@
-'use server'
+'use client'
 
-import { fetchProducts } from "@/app/lib/data"
 import { CardItem } from "./card-item"
+import { useProducts } from "@/hooks/useProducts"
 
-export default async function CardWrapper() {
-  const data = await fetchProducts()
+export default  function CardWrapper() {
+  const products = useProducts()
+  
   return (
     <section className='flex flex-wrap gap-8'>
-        {data.map((data) => (
-        <CardItem key={data.id} product={data} />
+        {products.products?.map((products) => (
+        <CardItem key={products.id} product={products} />
       ))}
     </section>
   )
