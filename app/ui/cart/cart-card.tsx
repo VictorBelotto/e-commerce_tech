@@ -19,10 +19,10 @@ export const Card = ({ product }: { product: ProductProps }) => {
             <span className='w-[110px] h-[110px] bg-gray-500' />
           )
       }
-      <div className='px-3 py-3 flex gap-12 items-center w-full justify-between'>
+      <div className='ml-4 px-3 py-3 flex gap-12 items-center w-full justify-between'>
         <div className='flex-col flex h-full'>
-          <a className='font-semibold w-72'>{name}</a>
-          <div className='mt-auto flex flex-col'>
+          <a className='font-semibold w-72 truncate'>{name}</a>
+          <div className='mt-auto flex flex-col line text-gray-500'>
             <p className='text-sm'>Com desconto no PIX: {formatCurrencyBRL(price)}</p>
             <p className='text-sm max-w-72'>Parcelado no cartão de crédito em até 10x sem juros: {valorParcelado}</p>
           </div>
