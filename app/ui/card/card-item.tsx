@@ -10,28 +10,30 @@ import Link from 'next/link'
 export function CardItem({ product }: { product: ProductProps }) {
   const { name, id, price, image_url } = product
   return (
-    <section className='rounded-lg flex flex-col py-2 px-3 shadow-lg h-[508px] justify-between bg-white cursor-pointer' id={id} >
-      <Link href={`product/${id}`}>
-        <div>
+    <section className='flex flex-col py-2 px-3 h-[480px] justify-between items-center cursor-pointer text-white group' id={id} >
+      <Link href={`product/${id}`} className='flex w-64 h-64 flex-col'>
+        <div className='flex w-64 h-64'>
           {image_url ? (
-            <Image src={image_url[0]} alt={`Imagem ${image_url[0]}`} width={288} height={288} />
+            <Image src={image_url[0]} alt={`Imagem ${image_url[0]}`} width={288} height={288} className='w-64 h-64 rounded-lg brightness-75 group-hover:brightness-100' />
           ) : (
-            <div className='w-72 h-48 bg-slate-700 rounded-lg'></div>
+            <div className='w-64 h-64 bg-slate-700 rounded-lg'></div>
           )}
 
         </div>
         <div className='flex flex-col gap-4 mt-4'>
-          <p className='w-72 font-bold h-14 overflow-hidden truncate hover:underline'>{name}</p>
-          <p className='font-semibold text-xl'>
-            {formatCurrencyBRL(price)}
-          </p>
+          <p className='w-full font-semibold overflow-hidden text-wrap line-clamp-2 truncate'>{name}</p>
+          <div className='flex flex-col gap-1'>
+            <p className='text-xs text-green-500'>à vista</p>
+            <p className='font-semibold text-xl text-green-500 '>
+              {formatCurrencyBRL(price)}
+            </p>
+            <p className='text-xs'>No PIX com 10% de desconto</p>
+          </div>
         </div>
       </Link>
-      <div>
-        <div className='flex gap-4 items-center mt-auto justify-center'>
+        <div className='flex items-center mt-auto justify-center w-full'>
           <ButtonAddCart product={product} />
         </div>
-      </div>
 
     </section>
   )
