@@ -7,7 +7,7 @@ import AddQuantifyIcon from "../icons/addQuantifyIcon";
 export function ButtonRemoveToCart({ id }: { id: string }) {
   const { removeFromCart } = useCartStore();
   return (
-    <Button onClick={() => removeFromCart(id)} size={"sm"} color={'white'} colorScheme='red' >
+    <Button onClick={() => removeFromCart(id)} size={"sm"} color={'white'} colorScheme='red' className="mt-auto">
       Remover
     </Button>
   )
@@ -15,7 +15,7 @@ export function ButtonRemoveToCart({ id }: { id: string }) {
 export function ButtomAddQuantify({ product }: { product: ProductProps }) {
   const { addToCart } = useCartStore();
   return (
-    <Button onClick={() => addToCart(product)} size={"sm"} color={'black'} variant='ghost'>
+    <Button onClick={() => addToCart(product)} size={"sm"} color={'white'} colorScheme="blackAlpha" variant='ghost' className="rounded-full">
       <AddQuantifyIcon />
     </Button>)
 }
@@ -23,7 +23,7 @@ export function ButtomAddQuantify({ product }: { product: ProductProps }) {
 export function ButtomRemoveQuantify({ id }: { id: string }) {
   const { removeQuantity } = useCartStore();
   return (
-    <Button onClick={() => removeQuantity(id)} size={"sm"} color={'black'} variant='ghost' >
+    <Button onClick={() => removeQuantity(id)} size={"sm"} color={'black'} colorScheme="blackAlpha" variant='ghost' className="rounded-full">
       <RemoveQuantifyIcon />
     </Button>
   )
