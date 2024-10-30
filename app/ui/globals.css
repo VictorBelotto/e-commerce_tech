@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html, body{ 
-  @apply !bg-[#eaeef9]
+  @apply !bg-[#222222]
 }
 h1 {
   @apply text-4xl md:text-5xl lg:text-6xl font-bold;
