@@ -30,7 +30,7 @@ export function CardItem({ product }: { product: ProductProps }) {
             <p className='text-xs'>No PIX com 10% de desconto</p>
           </div>
         </div>
-      </Link>
+      </Link> 
         <div className='flex items-center mt-auto justify-center w-full'>
           <ButtonAddCart product={product} />
         </div>
