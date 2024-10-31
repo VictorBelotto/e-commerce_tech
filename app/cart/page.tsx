@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import { CartWrapper } from '../ui/cart/cartWrapper'
+import Resume from '../ui/cart/resume'
 
 const page = () => {
   return (
@@ -7,6 +8,7 @@ const page = () => {
       <Suspense fallback={<p>Carregando...</p>}>
         <CartWrapper />
       </Suspense>
+      <Resume/>
     </main>
   )
 }
