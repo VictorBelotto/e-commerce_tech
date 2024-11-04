@@ -28,3 +28,11 @@ export function ButtomRemoveQuantify({ id }: { id: string }) {
     </Button>
   )
 }
+
+export function ButtomBuy(){
+  return (
+    <Button size={"sm"} color={'white'} colorScheme="orange" variant='solid' className="rounded-full">
+      Finalizar pedido
+    </Button>
+  )
+}
