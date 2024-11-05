@@ -21,8 +21,6 @@ export async function POST(req: Request) {
   if (!userId) {
     return new Response("unauthorized", { status: 401 });
   }
-
-  const customerId = 'cus_R9wBIJnRRFT6LU'
   const total = calculateAmount(items)
 
   const orderData = {
@@ -36,7 +34,7 @@ export async function POST(req: Request) {
         name: item.name,
         description: item.description,
         price: item.price,
-        image: item.image_url
+        image: item.image_url[0]
       })),
     }
   }
@@ -63,24 +61,26 @@ export async function POST(req: Request) {
                 name: item.name,
                 description: item.description,
                 price: item.price,
-                image: item.image_url
+                image: item.image_url || ''
               })),
             }
           }
         })
       ]);
       if (!existing_order) {
-        return NextResponse.json('Order não encontrada', { status: 404 })
+        return Response.json('Ordem não encontrada', { status: 404 })
       }
       return NextResponse.json({ paymentIntent: updated_intent }, { status: 200 })
     }
   } else {
+    console.log('Teste teste teste teste teste teste teste teste')
     const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateAmount(items),
       currency: 'brl',
       automatic_payment_methods: { enabled: true }
     });
     orderData.paymentIntentID = paymentIntent.id;
+
     const newOrder = await prisma.order.create({
       data: orderData
     })
