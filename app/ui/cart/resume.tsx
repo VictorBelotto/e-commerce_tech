@@ -1,14 +1,24 @@
 'use client'
 import { useCartStore } from '@/app/context/store'
 import { formatCurrencyBRL } from '@/app/lib/utils'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ButtomBuy } from './buttons-cart'
+import Checkout from '../components/checkout'
 
 const Resume = () => {
-  const { cart } = useCartStore()
+  const { cart, onCheckout, setCheckout } = useCartStore()
+   useEffect(()=>{
+    if(cart.length <=0 ){
+      setCheckout('cart')
+    }
+   
+  },[cart, onCheckout, setCheckout])
+  
   if (!cart) {
     return <><h3>Sem items</h3></>
   }
+
+ 
 
   const total = cart.reduce((acc, value) => {
     const price = value.price ?? 0;
@@ -43,8 +53,14 @@ const Resume = () => {
       </div>
 
       <hr className='mt-2 mb-4 border-gray-700' />
+      {cart.length > 0 && onCheckout === 'cart' && (
+        <ButtomBuy />
+      )}
 
-      <ButtomBuy/>
+      {onCheckout === 'checkout' && (
+        <Checkout/>
+      )}
+
     </aside>
   )
 }
