@@ -11,10 +11,10 @@ export function CartWrapper() {
       <h5 className="text-white px-4 mb-4">Produtos</h5>
       <hr className='my-2 border-gray-700' />
       {cart && Array.isArray(cart) && cart.map((product) => (
-        <>
-          <Card product={product} key={product.id} />
-          <hr className='my-2 border-gray-700' />
-        </>
+        <div key={product.id}>
+          <Card product={product}  />
+          <hr className='my-2 border-gray-700'  />
+        </div>
 
       ))}
     </section>

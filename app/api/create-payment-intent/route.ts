@@ -16,9 +16,7 @@ const calculateAmount = (items: ProductProps[]) => {
 
 export async function POST(req: Request) {
   const { userId } = auth()
-  const { items } = await req.json();
-
-  const payment_intent_id = 'cus_R9wBIJnRRFT6LU'
+  const { items,  payment_intent_id} = await req.json();
 
   if (!userId) {
     return new Response("unauthorized", { status: 401 });
