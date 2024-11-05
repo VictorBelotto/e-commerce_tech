@@ -12,11 +12,13 @@ const Checkout = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        items : cartStore.cart,
+        items: cartStore.cart,
         payment_intent_id: cartStore.paymentIntent
       }),
+    }).then((response) => { return response.json() }).then((data) => {
+      console.log(data.paymentIntent)
     })
-  },[cartStore.paymentIntent, cartStore.cart])
+  }, [cartStore.paymentIntent, cartStore.cart])
   return (
     <div>Checkout</div>
   )

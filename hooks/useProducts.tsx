@@ -4,7 +4,6 @@ import { ProductProps } from '@/app/lib/definitions';
 
 export function useProducts() {
   const { data, error, isLoading } = useSWR<ProductProps[]>('fetchProducts',fetchProducts);
-  console.log(data)
   return {
     products: data,
     isLoading: isLoading,
