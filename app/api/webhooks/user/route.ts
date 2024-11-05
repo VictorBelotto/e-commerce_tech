@@ -32,9 +32,8 @@ async function handler(request: Request) {
   const payload = await request.json();
   const headerList = headers();
 
-  // Garantir que os cabeçalhos necessários não sejam nulos
   const heads: WebhookRequiredHeaders = {
-    'svix-id': headerList.get('svix-id') || '', // Use uma string vazia se o cabeçalho for nulo
+    'svix-id': headerList.get('svix-id') || '', 
     'svix-timestamp': headerList.get('svix-timestamp') || '',
     'svix-signature': headerList.get('svix-signature') || '',
   };
@@ -68,23 +67,15 @@ async function handler(request: Request) {
       where: { externalId: id as string },
       create: {
         externalId: id as string,
-        firstName: first_name,
-        lastName: last_name,
-        email: email_addresses.find(email => email.id === primary_email_address_id)?.email_address || '',
         attributes,
       },
       update: {
-        firstName: first_name,
-        lastName: last_name,
-        email: email_addresses.find(email => email.id === primary_email_address_id)?.email_address || '',
         attributes,
       }
     });
-
-    return NextResponse.json({}, { status: 200 });
   }
 
-  return NextResponse.json({}, { status: 400 });
+  return NextResponse.json({}, { status: 200 });
 }
 
 export const GET = handler;
