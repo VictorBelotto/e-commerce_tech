@@ -2,10 +2,7 @@
 
 import { ProductProps } from "./definitions";
 import Stripe from "stripe"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-09-30.acacia",
-});
+import { stripe } from "./stripe";
 
 export async function fetchProducts() : Promise<ProductProps[]>{
   try {
