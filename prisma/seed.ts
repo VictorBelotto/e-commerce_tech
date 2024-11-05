@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+/* import { PrismaClient } from '@prisma/client';
 import { products} from '../app/lib/initial-products';
 
 const prisma = new PrismaClient();
@@ -33,3 +33,4 @@ seedDatabase();
 
 
 
+ */
