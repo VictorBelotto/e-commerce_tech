@@ -3,7 +3,6 @@ import { IncomingHttpHeaders } from "http";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook, WebhookRequiredHeaders } from 'svix';
-import Stripe from "stripe";
 import { stripe } from "@/app/lib/stripe";
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || '';
