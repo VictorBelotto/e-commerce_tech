@@ -1,4 +1,4 @@
-export const products = [
+/* export const products = [
   {
     id: "ryzen-5-5600x",
     name: "Ryzen 5 5600X",
@@ -143,4 +143,4 @@ export const products = [
     price: 699.99,
     special_tag : 'none'
   }
-];
+]; */

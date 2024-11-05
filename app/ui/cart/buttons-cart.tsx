@@ -1,8 +1,12 @@
+'use client'
 import { useCartStore } from "@/app/context/store";
 import { Button } from "@chakra-ui/react";
 import RemoveQuantifyIcon from "../icons/removeQuantifyIcon";
 import { ProductProps } from "@/app/lib/definitions";
 import AddQuantifyIcon from "../icons/addQuantifyIcon";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+
 
 export function ButtonRemoveToCart({ id }: { id: string }) {
   const { removeFromCart } = useCartStore();
@@ -29,9 +33,21 @@ export function ButtomRemoveQuantify({ id }: { id: string }) {
   )
 }
 
-export function ButtomBuy(){
+export function ButtomBuy() {
+  const router = useRouter()
+  const { user } = useUser()
+  const useStore = useCartStore()
+
+  const handleCheckout = async () => {
+    if (!user) {
+      router.push(`/sing-in?redirectUrl=/cart`)
+      useStore.setCheckout('cart')
+      return
+    }
+    useStore.setCheckout('checkout')
+  }
   return (
-    <Button size={"sm"} color={'white'} colorScheme="orange" variant='solid' className="rounded-full">
+    <Button size={"sm"} color={'white'} colorScheme="orange" variant='solid' className="rounded-full" onClick={handleCheckout}>
       Finalizar pedido
     </Button>
   )

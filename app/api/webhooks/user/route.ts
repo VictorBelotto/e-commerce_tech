@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook, WebhookRequiredHeaders } from 'svix';
 import Stripe from "stripe";
+import { stripe } from "@/app/lib/stripe";
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || '';
 
@@ -64,9 +65,7 @@ async function handler(request: Request) {
       ...attributes
     } = evt.data;
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      apiVersion: "2024-09-30.acacia",
-    });
+   
 
     const customer = await stripe.customers.create({
       name: `${first_name} ${last_name}`,
