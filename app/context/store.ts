@@ -12,6 +12,8 @@ interface CartState{
   paymentIntent: string,
   setPaymentIntent: (paymentIntent : string) => void;
   clearCart: () => void;
+  clientSecret: string;
+  setClientSecret: (clientSecret : string) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -50,7 +52,10 @@ export const useCartStore = create<CartState>()(
       paymentIntent : '',
       setPaymentIntent : (paymentIntent) => set(()=> ({paymentIntent})),
       clearCart: () => set(() => ({ cart: [] })),
+      clientSecret: '',
+      setClientSecret: (clientSecret) => set(()=> ({clientSecret}))
     }),
+   
     {
       name: 'cart_storage',
     }

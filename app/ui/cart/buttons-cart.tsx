@@ -53,11 +53,13 @@ export function ButtomBuy() {
         body: JSON.stringify({
           items: useStore.cart,
           payment_intent_id: useStore.paymentIntent,
+          user_id: user.id
         }),
       })
       const data = await response.json()
       useStore.setPaymentIntent(data.paymentIntent)
-      useStore.setCheckout('checkout')
+      useStore.setClientSecret(data.paymentIntent?.client_secret)
+      console.log('ok')
     } catch (error) {
       console.error("Erro ao criar payment intent:", error)
     }
