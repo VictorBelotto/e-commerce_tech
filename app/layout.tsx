@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider localization={ptBR}>
-      <html lang="pt-br" className="">
+      <html lang="pt-BR" className="">
         <body className={inter.className}>
           <Hydrate>
             <ChakraProvider>
