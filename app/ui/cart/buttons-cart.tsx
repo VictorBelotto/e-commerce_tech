@@ -7,7 +7,6 @@ import AddQuantifyIcon from "../icons/addQuantifyIcon";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
-
 export function ButtonRemoveToCart({ id }: { id: string }) {
   const { removeFromCart } = useCartStore();
   return (
@@ -44,8 +43,26 @@ export function ButtomBuy() {
       useStore.setCheckout('cart')
       return
     }
-    useStore.setCheckout('checkout')
+    
+    try {
+      const response = await fetch('/api/create-payment-intent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: useStore.cart,
+          payment_intent_id: useStore.paymentIntent,
+        }),
+      })
+      const data = await response.json()
+      useStore.setPaymentIntent(data.paymentIntent)
+      useStore.setCheckout('checkout')
+    } catch (error) {
+      console.error("Erro ao criar payment intent:", error)
+    }
   }
+
   return (
     <Button size={"sm"} color={'white'} colorScheme="orange" variant='solid' className="rounded-full" onClick={handleCheckout}>
       Finalizar pedido

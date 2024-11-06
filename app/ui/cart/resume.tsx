@@ -53,7 +53,7 @@ const Resume = () => {
       </div>
 
       <hr className='mt-2 mb-4 border-gray-700' />
-      {cart.length > 0 && onCheckout === 'cart' && (
+      {cart.length > 0  && (
         <ButtomBuy />
       )}
 

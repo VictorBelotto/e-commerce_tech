@@ -10,7 +10,6 @@ const calculateAmount = (items: ProductProps[]) => {
     const quantity = value.quantity ?? 1;
     return acc + (price * quantity)
   }, 0)
-
   return total
 }
 
@@ -34,7 +33,7 @@ export async function POST(req: Request) {
         name: item.name,
         description: item.description,
         price: item.price,
-        image: item.image_url[0]
+        image: item.image_url
       })),
     }
   }
@@ -61,24 +60,24 @@ export async function POST(req: Request) {
                 name: item.name,
                 description: item.description,
                 price: item.price,
-                image: item.image_url || ''
+                image: item.image_url[0]
               })),
             }
           }
         })
       ]);
       if (!existing_order) {
-        return Response.json('Ordem não encontrada', { status: 404 })
+        return NextResponse.json('Ordem não encontrada', { status: 404 })
       }
-      return NextResponse.json({ paymentIntent: updated_intent }, { status: 200 })
+      return NextResponse.json({ paymentIntent: updated_order }, { status: 200 })
     }
   } else {
-    console.log('Teste teste teste teste teste teste teste teste')
     const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateAmount(items),
       currency: 'brl',
       automatic_payment_methods: { enabled: true }
     });
+
     orderData.paymentIntentID = paymentIntent.id;
 
     const newOrder = await prisma.order.create({
