@@ -1,11 +1,12 @@
 'use client'
 import { useCartStore } from "@/app/context/store";
-import { Button } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 import RemoveQuantifyIcon from "../icons/removeQuantifyIcon";
 import { ProductProps } from "@/app/lib/definitions";
 import AddQuantifyIcon from "../icons/addQuantifyIcon";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function ButtonRemoveToCart({ id }: { id: string }) {
   const { removeFromCart } = useCartStore();
@@ -16,9 +17,10 @@ export function ButtonRemoveToCart({ id }: { id: string }) {
   )
 }
 export function ButtomAddQuantify({ product }: { product: ProductProps }) {
-  const { addToCart } = useCartStore();
+  const { addToCart} = useCartStore();
+
   return (
-    <Button onClick={() => addToCart(product)} size={"sm"} color={'white'} colorScheme="blackAlpha" variant='ghost' className="rounded-full">
+    <Button onClick={()=> addToCart(product)} size={"sm"} color={'white'} colorScheme="blackAlpha" variant='ghost' className="rounded-full">
       <AddQuantifyIcon />
     </Button>)
 }
@@ -33,6 +35,7 @@ export function ButtomRemoveQuantify({ id }: { id: string }) {
 }
 
 export function ButtomBuy() {
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { user } = useUser()
   const useStore = useCartStore()
@@ -43,8 +46,10 @@ export function ButtomBuy() {
       useStore.setCheckout('cart')
       return
     }
-    
+ 
+
     try {
+      setIsLoading(true)
       const response = await fetch('/api/create-payment-intent', {
         method: 'POST',
         headers: {
@@ -57,17 +62,22 @@ export function ButtomBuy() {
         }),
       })
       const data = await response.json()
-      useStore.setPaymentIntent(data.paymentIntent)
+      useStore.setPaymentIntent(data.paymentIntent.id)
       useStore.setClientSecret(data.paymentIntent?.client_secret)
-      console.log('ok')
+      useStore.setCheckout('checkout')
     } catch (error) {
       console.error("Erro ao criar payment intent:", error)
+    }finally{
+      setIsLoading(false)
     }
   }
 
   return (
-    <Button size={"sm"} color={'white'} colorScheme="orange" variant='solid' className="rounded-full" onClick={handleCheckout}>
-      Finalizar pedido
-    </Button>
+    <Stack>
+      <Button isLoading={isLoading} size={"sm"} color={'white'} colorScheme="orange" variant='solid' className="rounded-full" onClick={handleCheckout}>
+        Finalizar pedido
+      </Button>
+    </Stack >
+
   )
 }

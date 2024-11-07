@@ -29,6 +29,9 @@ importers:
       '@prisma/client':
         specifier: ^5.21.1
         version: 5.21.1(prisma@5.21.1)
+      '@stripe/react-stripe-js':
+        specifier: ^2.8.1
+        version: 2.8.1(@stripe/stripe-js@4.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@stripe/stripe-js':
         specifier: ^4.9.0
         version: 4.9.0
@@ -598,6 +601,13 @@ packages:
 
   '@stablelib/base64@1.0.1':
     resolution: {integrity: sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==}
+
+  '@stripe/react-stripe-js@2.8.1':
+    resolution: {integrity: sha512-C410jVKOATinXLalWotab6E6jlWAlbqUDWL9q1km0p5UHrvnihjjYzA8imYXc4xc4Euf9GeKDQc4n35HKZvgwg==}
+    peerDependencies:
+      '@stripe/stripe-js': ^1.44.1 || ^2.0.0 || ^3.0.0 || ^4.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   '@stripe/stripe-js@4.9.0':
     resolution: {integrity: sha512-tMPZQZZXGWyNX7hbgenq+1xEj2oigJ54XddbtSX36VedoKsPBq7dxwRXu4Xd5FdpT3JDyyDtnmvYkaSnH1yHTQ==}
@@ -2863,6 +2873,13 @@ snapshots:
   '@rushstack/eslint-patch@1.10.4': {}
 
   '@stablelib/base64@1.0.1': {}
+
+  '@stripe/react-stripe-js@2.8.1(@stripe/stripe-js@4.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@stripe/stripe-js': 4.9.0
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@stripe/stripe-js@4.9.0': {}
 

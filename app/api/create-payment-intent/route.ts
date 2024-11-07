@@ -15,7 +15,7 @@ const calculateAmount = (items: ProductProps[]) => {
 
 export async function POST(req: Request) {
   const { userId } = auth()
-  const { items,  payment_intent_id, user_id} = await req.json();
+  const { items,  payment_intent_id} = await req.json();
 
 
   if (!userId) {
@@ -24,11 +24,11 @@ export async function POST(req: Request) {
   const total = calculateAmount(items)
 
   const orderData = {
-    user: { connect: { id: user_id } },
+    user: { connect: { id: 1 } },
     amount: total,
     currency: 'brl',
     status: 'peding',
-    paymentIntentID: payment_intent_id.id,
+    paymentIntentID: payment_intent_id,
     products: {
       create: items.map((item: ProductProps) => ({
         name: item.name,
@@ -40,22 +40,22 @@ export async function POST(req: Request) {
     }
   }
 
-  if (payment_intent_id.id) {
-    const current_intent = await stripe.paymentIntents.retrieve(payment_intent_id.id)
+  if (payment_intent_id) {
+    const current_intent = await stripe.paymentIntents.retrieve(payment_intent_id)
 
     if (current_intent) {
-      const updated_intent = await stripe.paymentIntents.update(payment_intent_id.id, {
+      const updated_intent = await stripe.paymentIntents.update(payment_intent_id, {
         amount: total,
       })
       const [existing_order, updated_order] = await Promise.all([
         prisma.order.findFirst({
-          where: { paymentIntentID: payment_intent_id.id },
+          where: { paymentIntentID: payment_intent_id },
           include: { products: true }
         }),
         prisma.order.update({
-          where: { paymentIntentID: payment_intent_id.id },
+          where: { paymentIntentID: payment_intent_id },
           data: {
-            paymentIntentID : payment_intent_id.id,
+            paymentIntentID : payment_intent_id,
             amount: total,
             products: {
               deleteMany: {},

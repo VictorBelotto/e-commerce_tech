@@ -7,8 +7,8 @@ interface CartState{
   addToCart: (product: ProductProps) => void;
   removeFromCart: (productId: string) => void;
   removeQuantity: (productId: string) => void;
-  onCheckout: string;
-  setCheckout: (checkout : string) => void;
+  onCheckout: 'success' | 'cart' | 'checkout';
+  setCheckout: (checkout : 'success' | 'cart' | 'checkout') => void;
   paymentIntent: string,
   setPaymentIntent: (paymentIntent : string) => void;
   clearCart: () => void;

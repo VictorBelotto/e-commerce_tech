@@ -7,18 +7,20 @@ import Checkout from '../components/checkout'
 
 const Resume = () => {
   const { cart, onCheckout, setCheckout } = useCartStore()
-   useEffect(()=>{
-    if(cart.length <=0 ){
-      setCheckout('cart')
+
+  useEffect(() => {
+    if ((onCheckout === 'success' || onCheckout === 'checkout') || cart.length === 0) {
+      return
     }
-   
-  },[cart, onCheckout, setCheckout])
-  
+    setCheckout('cart')
+
+  }, [cart, onCheckout, setCheckout])
+
   if (!cart) {
     return <><h3>Sem items</h3></>
   }
 
- 
+
 
   const total = cart.reduce((acc, value) => {
     const price = value.price ?? 0;
@@ -53,14 +55,12 @@ const Resume = () => {
       </div>
 
       <hr className='mt-2 mb-4 border-gray-700' />
-      {cart.length > 0  && (
+      {cart.length > 0 && onCheckout === 'cart' && (
+
         <ButtomBuy />
-      )}
 
-      {onCheckout === 'checkout' && (
-        <Checkout/>
       )}
-
+      <Checkout />
     </aside>
   )
 }

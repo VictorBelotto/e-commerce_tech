@@ -7,11 +7,15 @@ import { ProductProps } from '@/app/lib/definitions'
 import { useCartStore } from '@/app/context/store'
 
 
-
 export function ButtonAddCart({ product }: { product: ProductProps }) {
-  const  {addToCart}  = useCartStore();
+  const { addToCart, setCheckout } = useCartStore();
+  const handleAdd = (product: ProductProps) =>{
+    addToCart(product)
+    setCheckout('cart')
+    console.log('add')
+  }
   return (
-      <Button className='flex gap-2 items-center justify-center w-full' colorScheme='orange' color='white' variant="solid"  onClick={() => addToCart(product)}>
+      <Button className='flex gap-2 items-center justify-center w-full' colorScheme='orange' color='white' variant="solid"  onClick={() => handleAdd(product)}>
         Adicionar ao carrinho
         <AddCart />
       </Button>
