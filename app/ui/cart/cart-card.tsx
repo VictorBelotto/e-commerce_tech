@@ -4,6 +4,7 @@ import { ProductProps } from '@/app/lib/definitions'
 import { formatCurrencyBRL } from '@/app/lib/utils'
 import { ButtomRemoveQuantify, ButtonRemoveToCart, ButtomAddQuantify } from './buttons-cart'
 import { ButtonAddCart } from '../components/buttons'
+import Link from 'next/link'
 
 export const Card = ({ product }: { product: ProductProps }) => {
   const { name, price, image_url, id, quantity } = product
@@ -20,13 +21,15 @@ export const Card = ({ product }: { product: ProductProps }) => {
           )
       }
       <div className='flex w-full ml-4 items-center justify-between'>
-        <div className='flex-col w-full max-w-[500px] flex h-full'>
-          <p className='w-full h-full font-semibold text-wrap line-clamp-2 truncate'>{name}</p>
-          <div className='mt-auto flex flex-col line text-gray-300'>
-            <p className='text-sm'>Com desconto no PIX: {formatCurrencyBRL(price)}</p>
-            <p className='text-sm max-w-72'>Parcelado no cartão de crédito em até 10x sem juros de: {valorParcelado}</p>
-          </div>
-        </div>
+   
+          <Link href={`/product/${id}`} className='flex-col w-full max-w-[500px] flex h-full group hover:cursor-pointer'>
+            <p className='w-full h-full font-semibold text-wrap line-clamp-2 truncate group-hover:text-orange-500'>{name}</p>
+            <div className='mt-auto flex flex-col line text-gray-300'>
+              <p className='text-sm'>Com desconto no PIX: {formatCurrencyBRL(price)}</p>
+              <p className='text-sm max-w-72'>Parcelado no cartão de crédito em até 10x sem juros de: {valorParcelado}</p>
+            </div>
+          </Link>
+
         <div className='flex flex-col items-center justify-between h-full'>
           <div className='flex flex-col items-center'>
             <p className='text-sm'>Quant.</p>
