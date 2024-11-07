@@ -1,7 +1,7 @@
 import { ProductProps } from '@/app/lib/definitions'
 import React from 'react'
 import Favorite from '../icons/favorite'
-import { ButtonAddCart } from '../components/buttons'
+import { ButtonAddCart, ButtonAddFavorite } from '../components/buttons'
 import { formatCurrencyBRL } from '@/app/lib/utils'
 import Image from 'next/image'
 
@@ -20,7 +20,7 @@ const Card = ({ product }: { product: ProductProps }) => {
 
           <div className='flex w-full items-center justify-between '>
             <p className='font-semibold'>Marca: {product.manufacturer}</p>
-            <Favorite className=' stroke-red-600  fill-none cursor-pointer' />
+            <ButtonAddFavorite product={product}/>
           </div>
           <hr className='my-2 border-gray-700' />
           <p className='uppercase text-green-500 font-semibold'>Produto Disponível</p>

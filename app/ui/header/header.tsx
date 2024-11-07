@@ -16,7 +16,10 @@ export default function Header() {
           <Search />
         </div>
         <div className="flex gap-9 items-center">
-          <Favorite className="cursor-pointer" />
+
+          <Link href='/favorites'>
+            <Favorite className="cursor-pointer" />
+          </Link>
 
           <Link href='/cart'>
             <CartComponent />
