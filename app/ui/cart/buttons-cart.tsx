@@ -66,6 +66,7 @@ export function ButtomBuy() {
       useStore.setClientSecret(data.paymentIntent?.client_secret)
       useStore.setCheckout('checkout')
     } catch (error) {
+      useStore.setPaymentIntent('')
       console.error("Erro ao criar payment intent:", error)
     }finally{
       setIsLoading(false)
