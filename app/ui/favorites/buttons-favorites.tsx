@@ -1,10 +1,8 @@
 'use client'
 import { Button } from '@chakra-ui/react';
 import React from 'react'
-import AddCart from '../icons/addCart';
 import { ProductProps } from '@/app/lib/definitions';
 import { useFavoriteStore } from '@/app/context/favoriteStore';
-import { useCartStore } from '@/app/context/store';
 import Favorite from '../icons/favorite';
 
 export function ButtonAddFavorite({ product }: { product: ProductProps }) {
