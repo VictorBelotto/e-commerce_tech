@@ -19,7 +19,7 @@ const Card = ({ product }: { product: ProductProps }) => {
         <div className='flex flex-col'>
 
           <div className='flex w-full items-center justify-between '>
-            <p className='font-semibold'>Marca: {product.manufacturer}</p>
+            <p className='font-semibold w-fit'>Marca: {product.manufacturer}</p>
             <ButtonAddFavorite product={product}/>
           </div>
           <hr className='my-2 border-gray-700' />

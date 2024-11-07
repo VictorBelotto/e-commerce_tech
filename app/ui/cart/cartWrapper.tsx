@@ -15,8 +15,11 @@ export function CartWrapper() {
       ) : (
         <>
           <section className="flex flex-col w-[70%] px-4 py-4 bg-[#303030] rounded-lg h-fit">
-            <h5 className="text-white px-4 mb-4">Produtos</h5>
-            <hr className='my-2 border-gray-700' />
+          <div className='flex gap-2 items-center mb-4'>
+        <h4 className="text-white text-2xl">Meus Favoritos</h4>
+        
+      </div>
+      <hr className='border-red-500 w-24 mb-4'/>
             {cart && Array.isArray(cart) && cart.map((product) => (
               <div key={product.id}>
                 <Card product={product} />

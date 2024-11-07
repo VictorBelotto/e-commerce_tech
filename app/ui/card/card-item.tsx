@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { ProductProps } from '@/app/lib/definitions'
-import { ButtonAddCart } from '../components/buttons'
+import { ButtonAddCart, ButtonAddFavorite } from '../components/buttons'
 import { formatCurrencyBRL } from '@/app/lib/utils'
 import Link from 'next/link'
 
@@ -30,10 +30,14 @@ export function CardItem({ product }: { product: ProductProps }) {
             <p className='text-xs'>No PIX com 10% de desconto</p>
           </div>
         </div>
-      </Link> 
-        <div className='flex items-center mt-auto justify-center w-full'>
-          <ButtonAddCart product={product} />
+      </Link>
+
+      <div className='flex flex-col items-center mt-auto justify-center w-full'>
+        <div className='justify-self-end ml-auto w-fit relative top-[-32px]'>
+          <ButtonAddFavorite product={product} />
         </div>
+        <ButtonAddCart product={product} />
+      </div>
 
     </section>
   )
