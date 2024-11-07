@@ -13,20 +13,8 @@ export function ButtonAddFavorite({ product }: { product: ProductProps }) {
     removeFromFavorites(product.id)
   }
   return (
-      <Button className='flex gap-2 items-center justify-center w-full'  variant="ghost"  onClick={() => handleRemove(product)}>
+      <Button className='flex gap-2 items-center justify-center w-fit'  variant="ghost" colorScheme='white'  onClick={() => handleRemove(product)}>
         <Favorite  className='fill-red-500 stroke-red-500'/>
-      </Button>
-  )
-}
-
-export function ButtonAddCart({ product }: { product: ProductProps }) {
-  const {addToCart}  = useCartStore();
-  const handleAdd = (product: ProductProps) =>{
-    addToCart(product)
-  }
-  return (
-      <Button className='flex gap-2 items-center justify-center w-full' colorScheme='orange' color='white' variant="solid"  onClick={() => handleAdd(product)}>
-        <AddCart />
       </Button>
   )
 }

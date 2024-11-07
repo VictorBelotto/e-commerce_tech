@@ -9,7 +9,7 @@ export function CartWrapper() {
 
   return (
 
-    <main className='flex w-[85%] justify-between'>
+    <main className='flex w-full max-w-[1480px] justify-between'>
       {onCheckout === 'success' ? (
         <h2 className="text-white text-center">Compra efetuada com sucesso!</h2>
       ) : (
