@@ -56,7 +56,7 @@ export function ButtomBuy() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          items: useStore.cart,
+          items: useStore.cart, 
           payment_intent_id: useStore.paymentIntent,
           user_id: user.id
         }),
