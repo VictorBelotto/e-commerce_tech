@@ -34,7 +34,7 @@ export const useFavoriteStore = create<CartState>()(
     }),
    
     {
-      name: 'cart_storage',
+      name: 'favorite_storage',
     }
   )
 )
